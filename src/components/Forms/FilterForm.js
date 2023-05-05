@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Input } from "@nextui-org/react";
 
-function filterForm({ onChange }) {
+function FilterForm({ onChange }) {
 
   const handleFilter = (event) => {
     onChange(event.target.value);
@@ -19,4 +19,4 @@ function filterForm({ onChange }) {
     </Grid.Container>
   );
 }
-export default filterForm;
+export default FilterForm;

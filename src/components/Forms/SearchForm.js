@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Grid, Input, Spacer } from "@nextui-org/react";
 
-function searchForm({ onSubmit }) {
+function SearchForm({ onSubmit }) {
   const [movie, setMovie] = useState("");
 
   const handleSubmit = (event) => {
@@ -28,4 +28,4 @@ function searchForm({ onSubmit }) {
     </form>
   );
 }
-export default searchForm;
+export default SearchForm;

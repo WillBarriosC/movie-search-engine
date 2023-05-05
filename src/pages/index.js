@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState(null);
 
   const handleSearchMovies = async (movie) => {
     const searchResults = await SearchMovies(movie);
@@ -23,7 +23,9 @@ export default function Home() {
 
   const handleFilterMovies = (searchFilterMovie) => {
     const filteredMovies = movies.filter((movie) => {
-      return movie.Title.toLowerCase().includes(searchFilterMovie.toLowerCase());
+      return movie.Title.toLowerCase().includes(
+        searchFilterMovie.toLowerCase()
+      );
     });
     setFilteredMovies(filteredMovies);
   };
@@ -32,11 +34,14 @@ export default function Home() {
     <>
       <Layout>
         <SearchForm onSubmit={handleSearchMovies} />
-        <FilterForm onChange={handleFilterMovies} />
         <Grid.Container gap={2}>
-          {filteredMovies.length > 0 ? (
-            filteredMovies.map((movie) => 
-            <MovieCard key={movie} movie={movie} />)
+          {filteredMovies !== null && (
+            <FilterForm onChange={handleFilterMovies} />
+          )}
+          {filteredMovies !== null && filteredMovies.length > 0 ? (
+            filteredMovies.map((movie) => (
+              <MovieCard key={movie} movie={movie} />
+            ))
           ) : (
             <Grid.Container css={{ mt: "1rem" }} justify="center">
               <Text>No movies to show...</Text>
